@@ -15,9 +15,9 @@ public class DataType {
     }
 
     private static boolean isDate(int code) {
-        int[] dateCodes = {702, 1082, 1083, 1114, 1184, 1266, 12403};
-        for (int dateCode : dateCodes) {
-            if (code == dateCode) {
+        int[] codFechas = {702, 1082, 1083, 1114, 1184, 1266, 12403};
+        for (int FechaSi : codFechas) {
+            if (code == FechaSi) {
                 return true;
             }
         }
@@ -25,9 +25,9 @@ public class DataType {
     }
 
     private static boolean isNumeric(int code) {
-        int[] numericCodes = {20, 21, 23, 24, 26, 700, 701, 790, 1700, 2202, 2203, 2204, 2205, 2206, 3734, 3769, 12396};
-        for (int numericCode : numericCodes) {
-            if (code == numericCode) {
+        int[] codNumeros = {20, 21, 23, 24, 26, 700, 701, 790, 1700, 2202, 2203, 2204, 2205, 2206, 3734, 3769, 12396};
+        for (int codigoNumerico : codNumeros) {
+            if (code == codigoNumerico) {
                 return true;
             }
         }

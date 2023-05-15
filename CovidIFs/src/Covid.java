@@ -2,34 +2,32 @@ public class Covid {
     public static String covid(float bodyTemperature, boolean difficultyBreathing,
                                boolean diabetes, boolean cancer, boolean isPregnant,
                                boolean isOver60yearsold, boolean hepatic,
-                               boolean kidnevDisease, boolean respiratoryDisease, String provincia
+                               boolean kidneyDisease, boolean respiratoryDisease, String provincia
     ){
-        if (
-                (bodyTemperature>= 38 && difficultyBreathing) ||
-                        (bodyTemperature>= 38 && difficultyBreathing && diabetes) ||
-                        (bodyTemperature>= 38 && difficultyBreathing && cancer) ||
-                        (bodyTemperature>= 38 && difficultyBreathing && isPregnant)||
-                        (bodyTemperature>= 38 && difficultyBreathing && isOver60yearsold) ||
-                        (bodyTemperature>= 38 && difficultyBreathing && hepatic)||
-                        (bodyTemperature>= 38 && difficultyBreathing && kidnevDisease)||
-                        (bodyTemperature>= 38 && difficultyBreathing && respiratoryDisease)||
-                        (bodyTemperature>= 38 && diabetes)||
-                        (bodyTemperature>= 38 && cancer)||
-                        (bodyTemperature>= 38 && isPregnant)||
-                        (bodyTemperature>= 38 && isOver60yearsold)||
-                        (bodyTemperature>= 38 && hepatic)||
-                        (bodyTemperature>= 38 && kidnevDisease)||
-                        (bodyTemperature>= 38 && respiratoryDisease)){
-            return "/diagnostico/"+provincia;
-        }
-        else if(bodyTemperature>= 38){
+
+        if (tieneSintomasGraves(bodyTemperature, difficultyBreathing, diabetes, cancer, isPregnant,
+                isOver60yearsold, hepatic, kidneyDisease, respiratoryDisease)) {
+            return "/diagnostico/" + provincia;
+        } else if (tieneFiebre(bodyTemperature)) {
             return "/cuarentena/";
-        }
-        else if (bodyTemperature < 38){
-            return "/diagnostico_bueno/";
-        }
-        else{
+        } else {
             return "/diagnostico_bueno/";
         }
     }
+
+    private static boolean tieneSintomasGraves(float bodyTemperature, boolean difficultyBreathing,
+                                             boolean diabetes, boolean cancer, boolean isPregnant,
+                                             boolean isOver60yearsold, boolean hepatic,
+                                             boolean kidneyDisease, boolean respiratoryDisease) {
+        return bodyTemperature >= 38 && difficultyBreathing &&
+                (diabetes || cancer || isPregnant || isOver60yearsold ||
+                        hepatic || kidneyDisease || respiratoryDisease);
+    }
+
+    private static boolean tieneFiebre(float bodyTemperature) {
+        return bodyTemperature >= 38;
+    }
+
 }
+
+
